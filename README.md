@@ -32,10 +32,10 @@ Random Forest: More powerful, handles complex patterns, and often performs bette
 - F1 Score:  0.8819
 
 ## Evaluation Metrics
-Accuracy: Percent of correct predictions
-Precision: Correct malignant predictions
-Recall: Detected actual malignant cases
-F1 Score: Balance between precision and recall
+- Accuracy: Percent of correct predictions
+- Precision: Correct malignant predictions
+- Recall: Detected actual malignant cases
+- F1 Score: Balance between precision and recall
 
 ## Model Comparison
 Both models had the same accuracy (91.28%), so they performed equally well overall.
