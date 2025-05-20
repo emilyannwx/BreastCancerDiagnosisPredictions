@@ -19,17 +19,17 @@ Random Forest: More powerful, handles complex patterns, and often performs bette
 
 ## Results
 ### Logistic Regression
-Accuracy:  0.9128 (91.28%)
-Precision: 0.8548
-Recall:    0.8983
-F1 Score:  0.8760
+- Accuracy:  0.9128 (91.28%)
+- Precision: 0.8548
+- Recall:    0.8983
+- F1 Score:  0.8760
 
 
 ### Random Forest
-Accuracy:  0.9128 (91.28%)
-Precision: 0.8235
-Recall:    0.9492
-F1 Score:  0.8819
+- Accuracy:  0.9128 (91.28%)
+- Precision: 0.8235
+- Recall:    0.9492
+- F1 Score:  0.8819
 
 ## Evaluation Metrics
 Accuracy: Percent of correct predictions
