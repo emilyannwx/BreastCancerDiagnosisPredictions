@@ -53,16 +53,29 @@ rf_results = sc.parallelize(rf_predictions)
 lr_results = sc.parallelize(lr_predictions)
 
 #evaluation
-print("Logistic Regression Results")
 lr_metrics = BinaryClassificationMetrics(lr_results)
 lr_accuracy = lr_results.filter(lambda x: x[0] == x[1]).count() / float(lr_results.count())
-print(f"Accuracy: {lr_accuracy:.4f}")
-print(f"AUC: {lr_metrics.areaUnderROC:.4f}")
-
-print("Random Forest Results")
 rf_metrics = BinaryClassificationMetrics(rf_results)
 rf_accuracy = rf_results.filter(lambda x: x[0] == x[1]).count() / float(rf_results.count())
-print(f"Accuracy: {rf_accuracy:.4f}")
-print(f"AUC: {rf_metrics.areaUnderROC:.4f}")
+
+def classification_metrics(results, model_name):
+    TP = results.filter(lambda x: x[0] == 1.0 and x[1] == 1.0).count()
+    TN = results.filter(lambda x: x[0] == 0.0 and x[1] == 0.0).count()
+    FP = results.filter(lambda x: x[0] == 0.0 and x[1] == 1.0).count()
+    FN = results.filter(lambda x: x[0] == 1.0 and x[1] == 0.0).count()
+    
+    precision = TP / (TP + FP) if (TP + FP) > 0 else 0
+    recall = TP / (TP + FN) if (TP + FN) > 0 else 0
+    f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+    accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+    print(f"\n{model_name} Classification Report")
+    print(f"Accuracy:  {accuracy:.4f} ({accuracy*100:.2f}%)")
+    print(f"Precision: {precision:.4f}")
+    print(f"Recall:    {recall:.4f}")
+    print(f"F1 Score:  {f1:.4f}")
+
+classification_metrics(lr_results, "Logistic Regression")
+classification_metrics(rf_results, "Random Forest")
 
 sc.stop()
